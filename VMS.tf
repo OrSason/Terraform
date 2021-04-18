@@ -27,6 +27,42 @@ resource "azurerm_network_interface" "nic_vm_2" {
 }
 
 
+
+resource "azurerm_virtual_machine" "publicVM1" {
+  name                = "wta-public-vm1"
+  resource_group_name = var.resourceGroupName
+  location            = var.location
+  vm_size             = var.VMSize
+  network_interface_ids = [
+  azurerm_network_interface.nic_vm_1.id,
+  ]
+
+storage_os_disk {
+    name              = "myosdisk1"
+    caching           = "ReadWrite"
+    create_option     = "FromImage"
+    managed_disk_type = "Standard_LRS"
+  }
+
+  os_profile {
+    computer_name  = "hostname"
+    admin_username      = var.VMUsername
+    admin_password      = var.VMPassword
+  }
+
+  os_profile_windows_config {
+    provision_vm_agent = true
+  }
+
+  storage_image_reference {
+    publisher = "MicrosoftWindowsServer"
+    offer     = "WindowsServer"
+    sku       = "2019-Datacenter"
+    version   = "latest"
+  }
+
+}
+
 resource "azurerm_virtual_machine" "publicVM2" {
   name                = "wta-public-vm2"
   resource_group_name = var.resourceGroupName
