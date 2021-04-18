@@ -1,5 +1,7 @@
+#this script configures the database machines
+
 resource "azurerm_network_interface" "nic_vm_4" {
-  name                = "nice-vm-4"
+  name                = "nic-vm-4"
   location            = var.location
   resource_group_name = var.resourceGroupName
 
@@ -11,7 +13,7 @@ resource "azurerm_network_interface" "nic_vm_4" {
 }
 
 resource "azurerm_network_interface" "nic_vm_5" {
-  name                = "nice-vm-5"
+  name                = "nic-vm-5"
   location            = var.location
   resource_group_name = var.resourceGroupName
 
@@ -36,15 +38,15 @@ resource "azurerm_virtual_machine" "vm4" {
     version   = "latest"
   }
   storage_os_disk {
-    name              = "myosdisk1"
+    name              = "myosdisk4"
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "Standard_LRS"
   }
   os_profile {
     computer_name  = "hostname"
-    admin_username = "testadmin"
-    admin_password = "Password1234!"
+    admin_username = var.VMUsername
+    admin_password = var.VMPassword
   }
   os_profile_linux_config {
     disable_password_authentication = false
@@ -66,15 +68,15 @@ resource "azurerm_virtual_machine" "vm5" {
     version   = "latest"
   }
   storage_os_disk {
-    name              = "myosdisk2"
+    name              = "myosdisk5"
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "Standard_LRS"
   }
   os_profile {
     computer_name  = "hostname"
-    admin_username = "testadmin"
-    admin_password = "Password1234!"
+    admin_username = var.VMUsername
+    admin_password = var.VMPassword
   }
   os_profile_linux_config {
     disable_password_authentication = false
