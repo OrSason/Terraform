@@ -1,2 +1,2 @@
-location="westus2"
+location = "westus2"
 resourceGroupName = "wta-tr"
