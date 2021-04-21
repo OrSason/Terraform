@@ -1,2 +1,5 @@
-location="westus2"
+location="eastus"
 resourceGroupName = "wta-tr"
+VMSize = "Standard_F2"
+VMUsername = "Orsas" 
+VMPassword = "password1234!"
