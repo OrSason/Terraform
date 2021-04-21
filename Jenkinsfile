@@ -5,6 +5,9 @@ pipeline {
         
         stage("terraform_plan") {
             steps {
+                sh 'cd /'
+                sh 'mkdir App'
+                sh 'cd App'
                 sh 'terraform init'
                 sh 'terraform plan'
             }
