@@ -29,7 +29,7 @@ resource "azurerm_virtual_machine" "vm4" {
   location              = var.location
   resource_group_name   = var.resourceGroupName
   network_interface_ids = [azurerm_network_interface.nic_vm_4.id]
-  vm_size               = "Standard_DS1_v2"
+  vm_size               = var.VMSize
 
   storage_image_reference {
     publisher = "Canonical"
@@ -59,7 +59,7 @@ resource "azurerm_virtual_machine" "vm5" {
   location              = var.location
   resource_group_name   = var.resourceGroupName
   network_interface_ids = [azurerm_network_interface.nic_vm_5.id]
-  vm_size               = "Standard_DS1_v2"
+  vm_size               = var.VMSize
 
   storage_image_reference {
     publisher = "Canonical"

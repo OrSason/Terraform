@@ -9,7 +9,7 @@ pipeline {
             steps {
 
 
-                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:credentialsID, usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: credentialsID, usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
                         sh 'az login -u $USERNAME -p $PASSWORD'
                     }
                 
@@ -18,7 +18,7 @@ pipeline {
             }
         }
         
-        stage("test") {
+        stage("Deploy infastructure") {
             steps {
                 echo 'Testing'
             }

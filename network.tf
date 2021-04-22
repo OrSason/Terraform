@@ -4,6 +4,10 @@ resource "azurerm_virtual_network" "vNet" {
   location            = var.location
   resource_group_name = var.resourceGroupName
   address_space       = ["10.0.0.0/16"]
+
+  depends_on = [
+    azurerm_resource_group.rg,
+  ]
 }
 
 resource "azurerm_subnet" "PublicSN" {
@@ -62,6 +66,10 @@ resource "azurerm_network_security_group" "public_nsg" {
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
+
+  depends_on = [
+    azurerm_resource_group.rg,
+  ]
 }
 
 
@@ -97,7 +105,9 @@ resource "azurerm_network_security_group" "private_nsg" {
     
   }
 
-  
+  depends_on = [
+    azurerm_resource_group.rg,
+  ]
 }
 
 
