@@ -1,3 +1,5 @@
+String credentialsID = 'azureCredentials'
+
 pipeline {
     agent any
 
@@ -5,9 +7,13 @@ pipeline {
         
         stage("terraform_plan") {
             steps {
+
+
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:credentialsID, usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+                        sh 'az login -u $USERNAME -p $PASSWORD'
+                    }
                 
                 sh 'terraform init'
-                sh 'az login'
                 sh 'terraform plan'
             }
         }
