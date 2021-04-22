@@ -5,7 +5,9 @@ pipeline {
         
         stage("terraform_plan") {
             steps {
+                
                 sh 'terraform init'
+                sh 'az login'
                 sh 'terraform plan'
             }
         }
