@@ -2,6 +2,13 @@ pipeline {
     agent any
 
     stages {
+
+                stage('checkout') {
+            node {
+            cleanWs()
+            checkout scm
+            }
+        }
         
         stage("terraform_plan") {
             steps {
