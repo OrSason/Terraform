@@ -1,10 +1,11 @@
 pipeline {
     agent any
 
+    stages {
+        
         stage("terraform_plan") {
             steps {
                 sh 'terraform init'
-                sh 'terraform plan'
             }
         }
         
@@ -19,8 +20,5 @@ pipeline {
                 echo 'Deploy'
             }
         }
-
-        
-
     }
-
+}
