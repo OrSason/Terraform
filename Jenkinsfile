@@ -1,7 +1,7 @@
 String credentialsID = 'azureCredentials'
 
 pipeline {
-    agent any
+    agent {label 'slave'}
 
     stages {
 
