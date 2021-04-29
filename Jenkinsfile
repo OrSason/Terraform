@@ -4,12 +4,6 @@ pipeline {
     agent {label 'slave'}
 
     stages {
-
-        stage("checkout") {
-            steps {
-                echo 'Deploy'
-            }
-        }
         
         stage("terraform_plan") {
             steps {
