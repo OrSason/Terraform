@@ -122,3 +122,22 @@ resource "azurerm_subnet_network_security_group_association" "private_nsg_assoc"
   network_security_group_id = azurerm_network_security_group.private_nsg.id
 }
 
+
+resource "azurerm_nat_gateway" "NatG" {
+  name                    = "nat-Gateway"
+  location                = var.location
+  resource_group_name     = var.resourceGroupName
+  sku_name                = "Standard"
+  public_ip_address_ids   = [azurerm_public_ip.lb_front_ip.id]
+  idle_timeout_in_minutes = 10
+  
+}
+
+resource "azurerm_subnet_nat_gateway_association" "AssocPrivate" {
+  subnet_id      = azurerm_subnet.PrivateSN.id
+  nat_gateway_id = azurerm_nat_gateway.NatG.id
+}
+resource "azurerm_subnet_nat_gateway_association" "AssocPublic" {
+  subnet_id      = azurerm_subnet.PublicSN.id
+  nat_gateway_id = azurerm_nat_gateway.NatG.id
+}
