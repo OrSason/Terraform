@@ -3,7 +3,7 @@ resource "azurerm_virtual_network" "vNet" {
   name                = "wta-vnet"
   location            = var.location
   resource_group_name = var.resourceGroupName
-  address_space       = ["10.0.0.0/16"]
+  address_space       = ["11.0.0.0/16"]
 
   depends_on = [
     azurerm_resource_group.rg,
@@ -14,7 +14,7 @@ resource "azurerm_subnet" "PublicSN" {
   name                 = "public-subnet"
   resource_group_name  = var.resourceGroupName
   virtual_network_name = azurerm_virtual_network.vNet.name
-  address_prefixes     = ["10.0.1.0/24"]
+  address_prefixes     = ["11.0.1.0/24"]
 
 }
 
@@ -22,7 +22,7 @@ resource "azurerm_subnet" "PrivateSN" {
   name                 = "private-subnet"
     resource_group_name  = var.resourceGroupName
   virtual_network_name = azurerm_virtual_network.vNet.name
-  address_prefixes     = ["10.0.2.0/24"]
+  address_prefixes     = ["11.0.2.0/24"]
 
 }
 
