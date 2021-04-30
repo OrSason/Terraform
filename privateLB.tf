@@ -10,7 +10,7 @@ resource "azurerm_lb" "lb_back" {
     name                 = "privateIPLB"
     subnet_id            = azurerm_subnet.PrivateSN.id
     private_ip_address_allocation = "Static"
-    private_ip_address = "10.0.2.10"
+    private_ip_address = "11.0.2.10"
   }
  
 }
