@@ -10,6 +10,8 @@ resource "azurerm_network_interface" "nic_vm_4" {
     subnet_id                     = azurerm_subnet.PrivateSN.id
     private_ip_address_allocation = "Dynamic"
   }
+
+
 }
 
 resource "azurerm_network_interface" "nic_vm_5" {
@@ -22,6 +24,8 @@ resource "azurerm_network_interface" "nic_vm_5" {
     subnet_id                     = azurerm_subnet.PrivateSN.id
     private_ip_address_allocation = "Dynamic"
   }
+
+  
 }
 
 resource "azurerm_virtual_machine" "vm4" {
