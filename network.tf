@@ -122,13 +122,19 @@ resource "azurerm_subnet_network_security_group_association" "private_nsg_assoc"
   network_security_group_id = azurerm_network_security_group.private_nsg.id
 }
 
-
+resource "azurerm_public_ip" "nat_ip" {
+  name                = "lb-front-lb"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
+  allocation_method   = "Static"
+  sku                 = "Standard"
+}
 resource "azurerm_nat_gateway" "NatG" {
   name                    = "nat-Gateway"
   location                = var.location
   resource_group_name     = var.resourceGroupName
   sku_name                = "Standard"
-  public_ip_address_ids   = [azurerm_public_ip.lb_front_ip.id]
+  public_ip_address_ids   = [azurerm_public_ip.nat_ip.id]
   idle_timeout_in_minutes = 10
   
 }
